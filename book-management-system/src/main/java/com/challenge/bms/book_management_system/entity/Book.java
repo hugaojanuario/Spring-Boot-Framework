@@ -36,10 +36,9 @@ public class Book {
     private String isbn;
 
     @Column
-    @NotBlank
     @Min(value = 1500, message = "Somente sao aceitos livros a partir de 1500")
     @Max(value = 2025, message = "Somente sao aceitos livros até 2025")
-    private int publicationYear;
+    private Integer publicationYear;
 
 
 }
