@@ -15,7 +15,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     public User newUSer (User user){
-        return userRepository.save(user);
+        return userRepository.saveAndFlush(user);
     }
 
     public List <User> listUser (){
@@ -25,6 +25,19 @@ public class UserService {
     public Optional<User> listUserById (Long id){
         return userRepository.findById(id);
     }
+
+    public User updateUser(Long id, User newData) {
+
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setName(newData.getName());
+        user.setEmail(newData.getEmail());
+        user.setPaper(newData.getPaper());
+
+        return userRepository.save(user);
+    }
+
 
     public void deleteUserById(Long id){
         userRepository.deleteById(id);

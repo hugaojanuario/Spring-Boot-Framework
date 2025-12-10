@@ -4,13 +4,12 @@ package spring.boot.system.tickets.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import jdk.jshell.Snippet;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import spring.boot.system.tickets.enums.StatusTicket;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -40,8 +39,8 @@ public class Ticket {
     @Enumerated(value = EnumType.STRING)
     private StatusTicket statusTicket;
 
-    @Column
-    @NotBlank
+    @ManyToOne
+    @JoinColumn(name = "applicant_id")
     private User applicant;
 
     @Column

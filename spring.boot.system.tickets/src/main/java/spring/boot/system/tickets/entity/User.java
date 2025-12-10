@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import spring.boot.system.tickets.enums.Paper;
 
 import java.time.LocalDateTime;
 
@@ -23,21 +24,26 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+
     @NotBlank
+    @Column(nullable = false)
     private String name;
 
     @Email
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column
     @NotNull
     @Enumerated(value = EnumType.STRING)
+    @Column(nullable = false)
     private Paper paper;
 
-    @Column
+    @Column(nullable = false)
     private LocalDateTime localDateTime;
 
+    @PrePersist
+    public void onCreate() {
+        this.localDateTime = LocalDateTime.now();
+    }
 
 }

@@ -1,4 +1,4 @@
-package spring.boot.system.tickets.entity;
+package spring.boot.system.tickets.enums;
 
 public enum Paper {
     ADMIN,
