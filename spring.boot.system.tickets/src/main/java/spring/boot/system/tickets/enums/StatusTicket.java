@@ -1,7 +1,7 @@
 package spring.boot.system.tickets.enums;
 
 public enum StatusTicket {
-    ABETO,
+    ABERTO,
     EM_ANDAMENTO,
     FECHADO
 }

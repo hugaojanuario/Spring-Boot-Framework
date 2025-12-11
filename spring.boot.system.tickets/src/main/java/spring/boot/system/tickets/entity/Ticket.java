@@ -35,16 +35,24 @@ public class Ticket {
     private String description;
 
     @Column
-    @NotBlank
     @Enumerated(value = EnumType.STRING)
-    private StatusTicket statusTicket;
+    private StatusTicket statusTicket = StatusTicket.ABERTO;
 
     @ManyToOne
     @JoinColumn(name = "applicant_id")
-    private User applicant;
+    private User applicant = null;
+
+    @ManyToOne
+    @JoinColumn(name = "responsible_id")
+    private User responsible;
 
     @Column
     private LocalDateTime createdIn;
+
+    @PrePersist
+    public void onCreate() {
+        this.createdIn = LocalDateTime.now();
+    }
 
     @Column
     private LocalDateTime updatedIn;
